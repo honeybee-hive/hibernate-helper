@@ -1,0 +1,64 @@
+server:
+  port: 8800
+spring:
+  application:
+    name: hibernate-helper-example
+  # 数据源配置
+  datasource:
+    druid:
+      url: jdbc:mysql://127.0.0.1:3306/example_db?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8
+      username: root
+      password: 123456
+      driver-class-name: com.mysql.jdbc.Driver
+      min-idle: 1
+      max-wait: 60000
+      max-active: 20
+      initial-size: 1
+      test-on-borrow: true
+      test-on-return: false
+      test-while-idle: true
+      validation-query: select 'x'
+      pool-prepared-statements: false
+      max-pool-prepared-statement-per-connection-size: 20
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      time-between-eviction-runs-millis: 60000
+      # 配置一个连接在池中最小生存的时间，单位是毫秒
+      min-evictable-idle-time-millis: 300000
+      filters: stat,wall,slf4j
+      connect-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      web-stat-filter:
+        url-pattern: /*
+        exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*"
+      stat-view-servlet:
+        deny: # IP黑名单(共同存在时，deny优先于allow)
+        allow: # IP白名单
+        url-pattern: /druid/*
+        reset-enable: false
+        login-username: druid
+        login-password: druid
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+        current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
+        format_sql: true
+        hbm2ddl:
+          # 配置开启自动更新表结构
+          auto: update
+    hibernate:
+      naming_strategy: org.hibernate.cfg.ImprovedNamingStrategy
+swagger2:
+  basePackage: com.github.hibernate.helper.example.controller
+  title: Hibernate-helper-example
+  description: 开发文档实例
+  version: 1.0.0
+  contactName: zy
+  contactEmail:
+  license:
+  termsOfServiceUrl:
+
+## Naming strategy
+#  spring.jpa.hibernate.naming-strategy = org.hibernate.cfg.ImprovedNamingStrategy
+#  # stripped before adding them to the entity manager)
+#  spring.jpa.properties.hibernate.ejb.interceptor = com.mya.phyexam.core.interceptor.SQLAuditLogInterceptor
