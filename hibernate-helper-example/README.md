@@ -43,20 +43,18 @@ public class BaseDao {
 
 JPA事务开启及设置Hibernate事务管理
 ```java
-@SpringBootApplication(scanBasePackages = {"com.mnt.health.common", "com.mnt.health.example"})
-// 开启事务管理
+@SpringBootApplication(scanBasePackages = {"com.github.hibernate.helper.example"})
 @EnableTransactionManagement
-public class HealthExampleApplication {
+public class HibernateHelperExampleApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(HealthExampleApplication.class, args);
+        SpringApplication.run(HibernateHelperExampleApplication.class, args);
     }
 
     @Autowired
     @PersistenceContext
     private EntityManager entityManager;
 
-    // 设置Hibernate事务管理
     @Bean
     public HibernateTransactionManager transactionManager() {
         HibernateTransactionManager transactionManager = new HibernateTransactionManager();
