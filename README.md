@@ -252,7 +252,7 @@ public List<GradeTeacherDTO> findGradeTeacherDTO(C_GradeTeacher findGradeTeacher
     // 别名使用优先级：注解属性名称 > 参数 > 默认
     String sqlFields = SQLHelper.getSQLFields(GradeTeacherDTO.class, "grade");
     // SQL工具类：getQueryCondition通过注解配置获取条件语句及排序语句，
-    // 动态加载机制：当被注解的值是NULL则不生成SQL会被过滤
+    // 动态加载机制：当被注解的值是NULL则不生成SQL会被过滤，目前只支持AND连接方式
     QueryCondition queryCondition = SQLHelper.getQueryCondition(findGradeTeacher, "grade");
 
     // 可以不使用工具直接写SQL语句
