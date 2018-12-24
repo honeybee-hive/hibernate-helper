@@ -9,6 +9,10 @@
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
+out/
+.idea
+*.iml
+
 
 # Sensitive or high-churn files
 .idea/**/dataSources/
@@ -41,7 +45,7 @@ cmake-build-*/
 *.iws
 
 # IntelliJ
-out/
+gen### Maven template
 
 # mpeltonen/sbt-idea plugin
 .idea_modules/

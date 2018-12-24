@@ -15,7 +15,7 @@ pom.xml
 </dependency>
 <dependency>
     <groupId>com.github.hibernate.helper</groupId>
-    <artifactId>hibernate-helper</artifactId>
+    <artifactId>hibernate-helper-core</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 </dependency>
 ```

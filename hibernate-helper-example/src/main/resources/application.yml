@@ -6,9 +6,9 @@ spring:
   # 数据源配置
   datasource:
     druid:
-      url: jdbc:mysql://127.0.0.1:3306/example_db?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8
-      username:
-      password:
+      url: jdbc:mysql://192.168.0.3:6306/example_db?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8
+      username: dev
+      password: dev123456
       driver-class-name: com.mysql.jdbc.Driver
       min-idle: 1
       max-wait: 60000
