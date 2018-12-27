@@ -1,5 +1,6 @@
 package com.github.hibernate.helper.example;
 
+import com.github.hibernate.helper.HibernateHelper;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -28,5 +29,10 @@ public class HibernateHelperExampleApplication {
         HibernateTransactionManager transactionManager = new HibernateTransactionManager();
         transactionManager.setSessionFactory(entityManager.getEntityManagerFactory().unwrap(SessionFactory.class));
         return transactionManager;
+    }
+
+    @Bean
+    public HibernateHelper hibernateHelper() {
+        return new HibernateHelper(entityManager.getEntityManagerFactory().unwrap(SessionFactory.class));
     }
 }

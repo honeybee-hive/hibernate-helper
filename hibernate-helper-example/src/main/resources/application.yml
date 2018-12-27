@@ -30,8 +30,6 @@ spring:
         url-pattern: /*
         exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*"
       stat-view-servlet:
-        deny: # IP黑名单(共同存在时，deny优先于allow)
-        allow: # IP白名单
         url-pattern: /druid/*
         reset-enable: false
         login-username: druid
@@ -47,18 +45,13 @@ spring:
           # 配置开启自动更新表结构
           auto: update
     hibernate:
-      naming_strategy: org.hibernate.cfg.ImprovedNamingStrategy
+#      naming_strategy: org.hibernate.cfg.ImprovedNamingStrategy
+#  stripped before adding them to the entity manager)
+#  spring.jpa.properties.hibernate.ejb.interceptor = com.mya.phyexam.core.interceptor.SQLAuditLogInterceptor
 swagger2:
   basePackage: com.github.hibernate.helper.example.controller
   title: Hibernate-helper-example
   description: 开发文档实例
   version: 1.0.0
-  contactName: zy
-  contactEmail:
-  license:
-  termsOfServiceUrl:
 
-## Naming strategy
-#  spring.jpa.hibernate.naming-strategy = org.hibernate.cfg.ImprovedNamingStrategy
-#  # stripped before adding them to the entity manager)
-#  spring.jpa.properties.hibernate.ejb.interceptor = com.mya.phyexam.core.interceptor.SQLAuditLogInterceptor
+

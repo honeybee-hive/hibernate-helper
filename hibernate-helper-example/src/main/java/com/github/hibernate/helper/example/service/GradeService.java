@@ -68,14 +68,14 @@ public interface GradeService {
      */
     Grade findById(String id);
 
-    /**
-     * 分页查询
-     *
-     * @param gradeName
-     * @param pageable
-     * @return
-     */
-    Page<Grade> findGradeNameSQL(String gradeName, Pageable pageable);
+//    /**
+//     * 分页查询
+//     *
+//     * @param gradeName
+//     * @param pageable
+//     * @return
+//     */
+//    Page<Grade> findGradeNameSQL(String gradeName, Pageable pageable);
 
     /**
      * 查询

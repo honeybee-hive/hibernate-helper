@@ -15,6 +15,6 @@ import org.springframework.stereotype.Repository;
  * v1.0 2018-12-03 zhuyan 初版
  */
 @Repository
-public class UserDao extends BaseDao {
+public class UserDao {
 
 }

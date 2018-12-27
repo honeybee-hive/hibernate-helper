@@ -3,6 +3,7 @@
  */
 package com.github.hibernate.helper.example.service.impl;
 
+import com.github.hibernate.helper.HibernateHelper;
 import com.github.hibernate.helper.example.dao.GradeDao;
 import com.github.hibernate.helper.example.dto.GradeTeacherDTO;
 import com.github.hibernate.helper.example.dto.condition.GradeQuery;
@@ -12,11 +13,12 @@ import com.github.hibernate.helper.example.service.GradeService;
 import com.github.hibernate.helper.example.repository.GradeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.Serializable;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 班级
@@ -34,11 +36,15 @@ public class GradeServiceImpl implements GradeService {
     private GradeDao gradeDao;
 
     @Autowired
+    private HibernateHelper helper;
+
+    @Autowired
     private GradeRepository gradeRepository;
 
     @Transactional(rollbackFor = Exception.class)
     public Grade addGrade(Grade grade) {
-        return gradeRepository.save(grade);
+        Serializable gradeId = helper.save(grade);
+        return helper.get(Grade.class, gradeId);
     }
 
     @Transactional(rollbackFor = Exception.class)
@@ -53,7 +59,7 @@ public class GradeServiceImpl implements GradeService {
 
     @Transactional(rollbackFor = Exception.class)
     public void updatePatch(Grade updateGrade) {
-        gradeDao.updatePatch(updateGrade);
+        helper.updatePatch(updateGrade);
     }
 
     @Transactional(rollbackFor = Exception.class)
@@ -63,33 +69,28 @@ public class GradeServiceImpl implements GradeService {
 
     @Transactional(readOnly = true)
     public Grade findById(String id) {
-        return gradeRepository.findById(id).get();
-    }
-
-    @Transactional(readOnly = true)
-    public Page<Grade> findGradeNameSQL(String gradeName, Pageable pageable) {
-        return gradeRepository.findGradeNameSQL(gradeName, pageable);
+        return helper.get(Grade.class, id);
     }
 
     @Transactional(readOnly = true)
     public List<Grade> find() {
-        return gradeDao.find();
+        return helper.find(Grade.class);
     }
 
     @Transactional(readOnly = true)
     public List<Grade> findCondition(Grade grade) {
-        return gradeDao.findCondition(grade);
+        return helper.findCondition(Grade.class, grade);
     }
 
     @Transactional(readOnly = true)
-    public List<Grade> findByGrade(GradeQuery grade) {
-        return gradeDao.findByGrade(grade);
+    public List<Grade> findByGrade(GradeQuery gradeQuery) {
+        return helper.findCondition(Grade.class, gradeQuery);
     }
 
 
     @Transactional(readOnly = true)
     public Page<Grade> findPage(int page, int size) {
-        return gradeDao.findPage(page, size);
+        return helper.findPage(Grade.class, page, size);
     }
 
     @Transactional(readOnly = true)
