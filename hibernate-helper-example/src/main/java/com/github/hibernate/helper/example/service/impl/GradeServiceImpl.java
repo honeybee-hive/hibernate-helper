@@ -30,6 +30,7 @@ import java.util.Optional;
  * v1.0 2018-11-28 zhuyan 初版
  */
 @Service
+@Transactional(transactionManager = "transactionManagerPrimary")
 public class GradeServiceImpl implements GradeService {
 
     @Autowired

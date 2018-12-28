@@ -45,7 +45,7 @@ spring:
           # 配置开启自动更新表结构
           auto: update
     hibernate:
-#      naming_strategy: org.hibernate.cfg.ImprovedNamingStrategy
+      naming_strategy: org.hibernate.cfg.ImprovedNamingStrategy
 #  stripped before adding them to the entity manager)
 #  spring.jpa.properties.hibernate.ejb.interceptor = com.mya.phyexam.core.interceptor.SQLAuditLogInterceptor
 swagger2:
