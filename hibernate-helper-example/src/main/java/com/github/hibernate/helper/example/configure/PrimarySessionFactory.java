@@ -16,6 +16,8 @@ import org.springframework.core.annotation.Order;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 
+import javax.sql.DataSource;
+
 /**
  * [关于类内容的描述]
  *
@@ -31,6 +33,10 @@ public class PrimarySessionFactory {
     @Autowired
     private LocalContainerEntityManagerFactoryBean entityManagerFactoryPrimary;
 
+    @Autowired
+    @Qualifier("primaryDataSource")
+    private DataSource primaryDataSource;
+
     @Bean
     @Qualifier("sessionFactory")
     public SessionFactory sessionFactory() {
@@ -41,6 +47,7 @@ public class PrimarySessionFactory {
     public HibernateTransactionManager transactionManager(@Qualifier("sessionFactory") SessionFactory sessionFactory) {
         HibernateTransactionManager transactionManager = new HibernateTransactionManager();
         transactionManager.setSessionFactory(sessionFactory);
+        transactionManager.setDataSource(primaryDataSource);
         return transactionManager;
     }
 
