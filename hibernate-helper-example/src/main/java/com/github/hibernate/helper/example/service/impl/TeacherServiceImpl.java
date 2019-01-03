@@ -3,9 +3,9 @@
  */
 package com.github.hibernate.helper.example.service.impl;
 
+import com.github.hibernate.helper.HibernateHelper;
 import com.github.hibernate.helper.example.entity.Teacher;
 import com.github.hibernate.helper.example.service.TeacherService;
-import com.github.hibernate.helper.example.repository.TeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,10 +23,10 @@ import org.springframework.transaction.annotation.Transactional;
 public class TeacherServiceImpl implements TeacherService {
 
     @Autowired
-    private TeacherRepository teacherRepository;
+    private HibernateHelper helper;
 
     @Transactional(rollbackFor = Exception.class)
-    public Teacher addTeacher(Teacher teacher) {
-        return teacherRepository.save(teacher);
+    public String addTeacher(Teacher teacher) {
+        return helper.save(teacher).toString();
     }
 }

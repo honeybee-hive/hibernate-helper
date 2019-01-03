@@ -40,8 +40,8 @@ import java.util.Map;
 @EnableJpaRepositories(
         entityManagerFactoryRef = "entityManagerFactoryPrimary",
         transactionManagerRef = "transactionManagerPrimary",
-        basePackages = {"com.github.hibernate.helper.example.repository", "com.github.hibernate.helper.example.service.impl"})
-//设置Repository所在位置
+        basePackages = {"com.github.hibernate.helper.example"})
+//设置service所在位置
 public class PrimaryConfig {
 
     @Autowired
@@ -59,6 +59,7 @@ public class PrimaryConfig {
     }
 
     @Primary
+    @Qualifier("entityManagerFactoryPrimary")
     @Bean(name = "entityManagerFactoryPrimary")
     public LocalContainerEntityManagerFactoryBean entityManagerFactoryPrimary(EntityManagerFactoryBuilder builder) {
         return builder
@@ -69,15 +70,23 @@ public class PrimaryConfig {
                 .build();
     }
 
-    @Primary
-    @Bean(name = "transactionManagerPrimary")
-    public PlatformTransactionManager transactionManagerPrimary(EntityManagerFactoryBuilder builder) {
-        return new JpaTransactionManager(entityManagerFactoryPrimary(builder).getObject());
-    }
-
     private Map<String, String> getVendorProperties(DataSource dataSource) {
         jpaProperties.determineDatabase(dataSource);
         return jpaProperties.getProperties();
+    }
+
+    @Primary
+    @Bean(name = "transactionManagerPrimary")
+    public HibernateTransactionManager transactionManager(@Qualifier("entityManagerPrimary") EntityManager entityManager, @Qualifier("primaryDataSource") DataSource primaryDataSource) {
+        HibernateTransactionManager transactionManager = new HibernateTransactionManager();
+        transactionManager.setSessionFactory(entityManager.getEntityManagerFactory().unwrap(SessionFactory.class));
+        transactionManager.setDataSource(primaryDataSource);
+        return transactionManager;
+    }
+
+    @Bean(name = "helper")
+    public HibernateHelper helper(@Qualifier("entityManagerPrimary") EntityManager entityManager) {
+        return new HibernateHelper(entityManager.getEntityManagerFactory().unwrap(SessionFactory.class));
     }
 
 }

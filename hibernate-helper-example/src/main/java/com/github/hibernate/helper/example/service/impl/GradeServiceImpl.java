@@ -4,7 +4,7 @@
 package com.github.hibernate.helper.example.service.impl;
 
 import com.github.hibernate.helper.HibernateHelper;
-import com.github.hibernate.helper.example.dao.GradeDao;
+import com.github.hibernate.helper.example.dao.GradeTeacherDao;
 import com.github.hibernate.helper.example.dto.GradeTeacherDTO;
 import com.github.hibernate.helper.example.dto.condition.GradeQuery;
 import com.github.hibernate.helper.example.dto.condition.GradeTeacherQuery;
@@ -18,7 +18,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * 班级
@@ -33,7 +32,7 @@ import java.util.Optional;
 public class GradeServiceImpl implements GradeService {
 
     @Autowired
-    private GradeDao gradeDao;
+    private GradeTeacherDao gradeDao;
 
     @Autowired
     private HibernateHelper helper;
@@ -86,7 +85,6 @@ public class GradeServiceImpl implements GradeService {
     public List<Grade> findByGrade(GradeQuery gradeQuery) {
         return helper.findCondition(Grade.class, gradeQuery);
     }
-
 
     @Transactional(readOnly = true)
     public Page<Grade> findPage(int page, int size) {

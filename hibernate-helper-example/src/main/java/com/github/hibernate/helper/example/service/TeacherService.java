@@ -22,5 +22,5 @@ public interface TeacherService {
      * @param teacher
      * @return
      */
-    Teacher addTeacher(Teacher teacher);
+    String addTeacher(Teacher teacher);
 }

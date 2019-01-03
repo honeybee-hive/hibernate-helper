@@ -37,9 +37,8 @@ public class TeacherController {
     @ResponseBody
     @ApiOperation(value = "增加教师接口", notes = "")
     @RequestMapping(value = "/teacher/add", method = RequestMethod.POST)
-    public Teacher add(@RequestBody Teacher addTeacher) {
+    public String add(@RequestBody Teacher addTeacher) {
         return teacherService.addTeacher(addTeacher);
     }
-
 
 }

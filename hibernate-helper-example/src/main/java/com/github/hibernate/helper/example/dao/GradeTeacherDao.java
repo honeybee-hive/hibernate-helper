@@ -24,16 +24,16 @@ import java.util.List;
  * v1.0 2018-12-03 zhuyan 初版
  */
 @Repository
-public class GradeDao {
+public class GradeTeacherDao {
 
     @Autowired
     private HibernateHelper helper;
 
     public List<GradeTeacherDTO> findGradeTeacherDTO(GradeTeacherQuery findGradeTeacher) {
-        String sqlFields = SQLHelper.getSQLFields(GradeTeacherDTO.class, "grade");
+        //String sqlFields = SQLHelper.getSQLFields(GradeTeacherDTO.class, "grade");
         QueryCondition queryCondition = SQLHelper.getQueryCondition(findGradeTeacher, "grade");
 
-        String sql = "SELECT " + sqlFields + " "
+        String sql = "SELECT " + SQLHelper.getSQLFields(GradeTeacherDTO.class, "grade") + " "
                 + "     FROM sch_grade AS grade"
                 + "         INNER JOIN sch_teacher AS teacher ON grade.teacher_id = teacher.teacher_id"
                 + queryCondition.getQueryString()

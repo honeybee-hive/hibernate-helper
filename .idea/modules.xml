@@ -5,7 +5,6 @@
       <module fileurl="file://$PROJECT_DIR$/hibernate-helper.iml" filepath="$PROJECT_DIR$/hibernate-helper.iml" />
       <module fileurl="file://$PROJECT_DIR$/hibernate-helper-core/hibernate-helper-core.iml" filepath="$PROJECT_DIR$/hibernate-helper-core/hibernate-helper-core.iml" />
       <module fileurl="file://$PROJECT_DIR$/hibernate-helper-example/hibernate-helper-example.iml" filepath="$PROJECT_DIR$/hibernate-helper-example/hibernate-helper-example.iml" />
-      <module fileurl="file://$PROJECT_DIR$/hibernate-helper-example/hibernate-helper-example.iml" filepath="$PROJECT_DIR$/hibernate-helper-example/hibernate-helper-example.iml" />
     </modules>
   </component>
 </project>

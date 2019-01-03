@@ -12,13 +12,13 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.NativeQuery;
 import org.hibernate.query.internal.NativeQueryImpl;
 import org.hibernate.transform.Transformers;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
 import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.Iterator;
@@ -36,11 +36,11 @@ import java.util.Optional;
  * 变更履历： v1.0 2014-12-9 zy 初版
  */
 @Slf4j
-@Repository
 public class HibernateHelper {
 
     //@Autowired
     private SessionFactory sessionFactory;
+
 
     public HibernateHelper(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
