@@ -217,7 +217,8 @@ public class HibernateHelper {
 
         return this.getCurrentSession()
                 .createSQLQuery(sql).unwrap(NativeQueryImpl.class)
-                .setResultTransformer(Transformers.aliasToBean(clazz)).list();
+                .setResultTransformer(Transformers.aliasToBean(clazz))
+                .list();
     }
 
     /**
