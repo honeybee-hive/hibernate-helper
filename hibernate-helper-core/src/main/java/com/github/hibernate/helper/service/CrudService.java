@@ -23,7 +23,7 @@ import java.util.List;
  */
 public interface CrudService<T, PK extends Serializable> {
 
-    public Serializable save(T t);
+    public PK save(T t);
 
     public void update(T t);
 
@@ -33,18 +33,18 @@ public interface CrudService<T, PK extends Serializable> {
 
     public void delete(T t);
 
-    public void deleteById(PK id);
+    public void deleteById(Class<T> clazz, PK id);
 
     public void delete(T t, List<SQLCondition> conditionParams);
 
-    public T find(PK id);
+    public T get(Class<T> clazz, PK id);
 
-    public List<T> find();
+    public List<T> find(Class<T> clazz);
 
-    public List<T> findByCondition(Object condition);
+    public List<T> findByCondition(Class<T> clazz, Object condition);
 
-    public Page<T> findByPage(Integer page, Integer size);
+    public Page<T> findByPage(Class<T> clazz, Integer page, Integer size);
 
-    public Page<T> findByConditionPage(Object condition, Integer page, Integer size);
+    public Page<T> findByConditionPage(Class<T> clazz, Object condition, Integer page, Integer size);
 
 }

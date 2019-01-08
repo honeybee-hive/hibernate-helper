@@ -10,6 +10,8 @@ import com.github.hibernate.helper.HibernateHelper;
 import com.github.hibernate.helper.condition.SQLCondition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
 import java.util.List;
@@ -23,58 +25,70 @@ import java.util.List;
  * 变更履历：
  * v1.0 2019-01-08 zhuyan 初版
  */
+@Service
 public class CrudServiceImpl<T, PK extends Serializable> implements CrudService<T, PK> {
 
-    protected Class<T> clazz;
 
     @Autowired
     private HibernateHelper helper;
 
-    public Serializable save(T t) {
-        return helper.save(t);
+    @Transactional
+    public PK save(T t) {
+        return (PK) helper.save(t);
     }
 
+    @Transactional
     public void update(T t) {
         helper.update(t);
     }
 
+    @Transactional
     public void updatePatch(T t) {
         helper.updatePatch(t);
     }
 
+    @Transactional
     public void updatePatch(T t, List<SQLCondition> conditionParams) {
         helper.updatePatch(t, conditionParams);
     }
 
+    @Transactional
     public void delete(T t) {
         helper.delete(t);
     }
 
-    public void deleteById(PK id) {
+    @Transactional
+    public void deleteById(Class<T> clazz, PK id) {
         helper.delete(helper.get(clazz, id));
     }
 
+    @Transactional
     public void delete(T t, List<SQLCondition> conditionParams) {
         helper.delete(t);
     }
 
-    public T find(PK id) {
+    @Transactional
+    public T get(Class<T> clazz, PK id) {
         return helper.get(clazz, id);
     }
 
-    public List<T> find() {
+    @Transactional
+    public List<T> find(Class<T> clazz) {
         return helper.find(clazz);
     }
 
-    public List<T> findByCondition(Object condition) {
+    @Transactional
+    public List<T> findByCondition(Class<T> clazz, Object condition) {
         return helper.findCondition(clazz, condition);
     }
 
-    public Page<T> findByPage(Integer page, Integer size) {
+    @Transactional
+    public Page<T> findByPage(Class<T> clazz, Integer page, Integer size) {
         return helper.findPage(clazz, page, size);
     }
 
-    public Page<T> findByConditionPage(Object condition, Integer page, Integer size) {
+    @Transactional
+    public Page<T> findByConditionPage(Class<T> clazz, Object condition, Integer page, Integer size) {
         return helper.findConditionPage(clazz, condition, page, size);
     }
 
