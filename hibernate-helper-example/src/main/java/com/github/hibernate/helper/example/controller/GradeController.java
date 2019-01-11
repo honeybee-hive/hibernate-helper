@@ -47,7 +47,8 @@ public class GradeController {
     @ApiOperation(value = "增加班级接口")
     @PostMapping(value = "/grade/add")
     public Grade addGrade(@RequestBody Grade addGrade, BindingResult result) {
-        return gradeService.addGrade(addGrade);
+        String id = gradeService.save(addGrade);
+        return gradeService.get(Grade.class, id);
     }
 
     /**
@@ -71,7 +72,7 @@ public class GradeController {
     @ApiOperation(value = "删除班级接口")
     @DeleteMapping(value = "/grade/{id}")
     public void deleteGrade(@PathVariable String id) {
-        gradeService.deleteById(id);
+        gradeService.deleteById(Grade.class, id);
     }
 
     @ResponseBody
@@ -92,7 +93,7 @@ public class GradeController {
     @ApiOperation(value = "获取班级")
     @GetMapping("/grade/{id}")
     public Grade getGrade(@PathVariable String id) {
-        return gradeService.findById(id);
+        return gradeService.get(Grade.class, id);
     }
 
 
@@ -105,7 +106,7 @@ public class GradeController {
     @ApiOperation(value = "班级查询")
     @PostMapping(value = "/grade/find")
     public List<Grade> find() {
-        return gradeService.find();
+        return gradeService.find(Grade.class);
     }
 
 
@@ -113,14 +114,14 @@ public class GradeController {
     @ApiOperation(value = "班级条件查询")
     @PostMapping(value = "/grade/findCondition")
     public List<Grade> findCondition(@RequestBody Grade grade) {
-        return gradeService.findCondition(grade);
+        return gradeService.findByCondition(Grade.class, grade);
     }
 
     @ResponseBody
     @ApiOperation(value = "班级指定条件查询")
     @PostMapping(value = "/grade/findByGrade")
-    public List<Grade> findByGrade(@RequestBody GradeQuery cgrade) {
-        return gradeService.findByGrade(cgrade);
+    public List<Grade> findByGrade(@RequestBody GradeQuery gradeQuery) {
+        return gradeService.findByCondition(Grade.class, gradeQuery);
     }
 
 
@@ -133,7 +134,7 @@ public class GradeController {
     @ApiOperation(value = "条件分页班级查询接口")
     @GetMapping(value = "/grade/findPage")
     public Page<Grade> findPage(int page, int size) {
-        return gradeService.findPage(page, size);
+        return gradeService.findByPage(Grade.class, page, size);
     }
 
     /**

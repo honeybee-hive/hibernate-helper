@@ -16,6 +16,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 
+import javax.annotation.PostConstruct;
 import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.Iterator;
@@ -38,14 +39,9 @@ public class HibernateHelper {
     //@Autowired
     private SessionFactory sessionFactory;
 
-
     public HibernateHelper(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
-
-//    public SessionFactory getSessionFactory() {
-//        return this.sessionFactory;
-//    }
 
     public Session getCurrentSession() {
         return this.sessionFactory.getCurrentSession();

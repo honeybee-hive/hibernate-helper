@@ -31,14 +31,14 @@ public class TeacherController {
     /**
      * 增加教师接口
      *
-     * @param addTeacher
+     * @param teacher
      * @return
      */
     @ResponseBody
     @ApiOperation(value = "增加教师接口", notes = "")
     @RequestMapping(value = "/teacher/add", method = RequestMethod.POST)
-    public String add(@RequestBody Teacher addTeacher) {
-        return teacherService.addTeacher(addTeacher);
+    public String add(@RequestBody Teacher teacher) {
+        return teacherService.save(teacher);
     }
 
 }

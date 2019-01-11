@@ -7,6 +7,7 @@ import com.github.hibernate.helper.example.dto.GradeTeacherDTO;
 import com.github.hibernate.helper.example.dto.condition.GradeQuery;
 import com.github.hibernate.helper.example.dto.condition.GradeTeacherQuery;
 import com.github.hibernate.helper.example.entity.Grade;
+import com.github.hibernate.helper.service.CrudService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -21,22 +22,7 @@ import java.util.List;
  * 变更履历：
  * v1.0 2018-11-28 zhuyan 初版
  */
-public interface GradeService {
-
-    /**
-     * 保存
-     *
-     * @param grade
-     * @return
-     */
-    Grade addGrade(Grade grade);
-
-    /**
-     * 删除
-     *
-     * @param gradeId
-     */
-    void deleteById(String gradeId);
+public interface GradeService extends CrudService<Grade, String> {
 
     /**
      * 删除班级
@@ -44,61 +30,6 @@ public interface GradeService {
      * @param teacherId
      */
     void deleteByTeacherId(String teacherId);
-
-    /**
-     * 指定字段修改(应用于指定字段修改,使用@Query、@Modifying)
-     *
-     * @param gradeName
-     * @param gradeId
-     */
-    void updateQuerySql(String gradeName, String gradeId);
-
-    /**
-     * 指定字段修改（Null的字段不修改）
-     *
-     * @param updateGrade
-     */
-    void updatePatch(Grade updateGrade);
-
-    /**
-     * 查询
-     *
-     * @param id
-     * @return
-     */
-    Grade findById(String id);
-
-    /**
-     * 查询
-     *
-     * @return
-     */
-    List<Grade> find();
-
-    /**
-     * 实体类条件查询
-     *
-     * @param grade
-     * @return
-     */
-    List<Grade> findCondition(Grade grade);
-
-    /**
-     * 指定条件查询
-     *
-     * @param grade
-     * @return
-     */
-    List<Grade> findByGrade(GradeQuery grade);
-
-    /**
-     * 分页查询
-     *
-     * @param page
-     * @param size
-     * @return
-     */
-    Page<Grade> findPage(int page, int size);
 
     /**
      * 自定义SQL查询
