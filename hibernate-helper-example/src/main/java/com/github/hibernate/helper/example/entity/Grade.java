@@ -3,7 +3,7 @@
  */
 package com.github.hibernate.helper.example.entity;
 
-import com.github.hibernate.helper.annotation.QueryConditionAnnotation;
+import com.github.hibernate.helper.annotation.SelectWhere;
 import com.github.hibernate.helper.condition.SymbolConstants;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -31,19 +31,19 @@ public class Grade implements Serializable {
     @ApiModelProperty(value = "班级编码", required = true)
     private String gradeId;
     @ApiModelProperty(value = "班级名称", required = true)
-    @QueryConditionAnnotation(symbol = SymbolConstants.LIKE)
+    @SelectWhere(symbol = SymbolConstants.LIKE)
     private String gradeName;
     @ApiModelProperty(value = "班级状态", required = true)
-    @QueryConditionAnnotation(symbol = SymbolConstants.EQ)
+    @SelectWhere(symbol = SymbolConstants.EQ)
     private String gradeState;
     @ApiModelProperty(value = "班级类型", required = true)
-    @QueryConditionAnnotation(symbol = SymbolConstants.EQ)
+    @SelectWhere(symbol = SymbolConstants.EQ)
     private String gradeType;
     @ApiModelProperty(value = "班级备注", required = false)
-    @QueryConditionAnnotation(symbol = SymbolConstants.LIKE)
+    @SelectWhere(symbol = SymbolConstants.LIKE)
     private String gradeRemark;
     @ApiModelProperty(value = "教师编码", required = false)
-    @QueryConditionAnnotation(symbol = SymbolConstants.EQ)
+    @SelectWhere(symbol = SymbolConstants.EQ)
     private String teacherId;
 
     @Id

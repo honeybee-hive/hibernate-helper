@@ -3,7 +3,7 @@
  */
 package com.github.hibernate.helper.example.dto.condition;
 
-import com.github.hibernate.helper.annotation.QueryConditionAnnotation;
+import com.github.hibernate.helper.annotation.SelectWhere;
 import com.github.hibernate.helper.condition.SymbolConstants;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -23,19 +23,19 @@ import lombok.Data;
 public class GradeTeacherQuery {
 
     @ApiModelProperty(name = "班级名称")
-    @QueryConditionAnnotation(symbol = SymbolConstants.LIKE)
+    @SelectWhere(symbol = SymbolConstants.LIKE)
     private String gradeName;
 
     @ApiModelProperty(name = "班级状态")
-    @QueryConditionAnnotation(symbol = SymbolConstants.EQ)
+    @SelectWhere(symbol = SymbolConstants.EQ)
     private String gradeState;
 
     @ApiModelProperty(name = "班级类型")
-    @QueryConditionAnnotation(symbol = SymbolConstants.EQ)
+    @SelectWhere(symbol = SymbolConstants.EQ)
     private String gradeType;
 
     @ApiModelProperty(name = "教师名称")
-    @QueryConditionAnnotation(aliasName = "teacher", symbol = SymbolConstants.LIKE)
+    @SelectWhere(aliasName = "teacher", symbol = SymbolConstants.LIKE)
     private String teacherName;
 
 }

@@ -62,7 +62,7 @@ public class GradeTeacherDao {
     public Page<GradeTeacherDTO> findPageByGradeTeacherDTO(GradeTeacherQuery findGradeTeacher, int page, int size) {
         QueryCondition queryCondition = SQLHelper.getQueryCondition(findGradeTeacher, "grade");
 
-        String sql = "SELECT " + SQLHelper.getSQLFields(GradeTeacherDTO.class, "grade") + " "
+        String sql = "SELECT " + SQLHelper.getSQLFields(GradeTeacherDTO.class, "grade")
                 + "     FROM sch_grade AS grade"
                 + "         INNER JOIN sch_teacher AS teacher ON grade.teacher_id = teacher.teacher_id"
                 + queryCondition.getQueryString();

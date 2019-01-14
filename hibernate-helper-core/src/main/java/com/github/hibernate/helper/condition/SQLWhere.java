@@ -14,7 +14,7 @@ import lombok.Data;
  * 变更履历： v1.0 2014-10-30 zy 初版
  */
 @Data
-public class SQLCondition {
+public class SQLWhere {
 
     // 条件名称
     public String name;
@@ -23,15 +23,15 @@ public class SQLCondition {
     // 条件值
     public Object value;
 
-    public SQLCondition(String name, String symbol, Object value) {
+    public SQLWhere(String name, String symbol, Object value) {
         super();
         this.name = name;
         this.symbol = symbol;
         this.value = value;
     }
 
-    public static SQLCondition builder(String name, String symbol, Object value) {
-        return new SQLCondition(name, symbol, value);
+    public static SQLWhere builder(String name, String symbol, Object value) {
+        return new SQLWhere(name, symbol, value);
     }
 
 

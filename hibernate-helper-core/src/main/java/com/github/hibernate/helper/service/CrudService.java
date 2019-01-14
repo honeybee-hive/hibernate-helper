@@ -6,7 +6,7 @@
  */
 package com.github.hibernate.helper.service;
 
-import com.github.hibernate.helper.condition.SQLCondition;
+import com.github.hibernate.helper.condition.SQLWhere;
 import org.springframework.data.domain.Page;
 
 import java.io.Serializable;
@@ -29,13 +29,13 @@ public interface CrudService<T, PK extends Serializable> {
 
     public void updatePatch(T t);
 
-    public void updatePatch(T t, List<SQLCondition> conditionParams);
+    public void updatePatch(T t, List<SQLWhere> conditionParams);
 
     public void delete(T t);
 
     public void deleteById(Class<T> clazz, PK id);
 
-    public void delete(T t, List<SQLCondition> conditionParams);
+    public void delete(T t, List<SQLWhere> conditionParams);
 
     public T get(Class<T> clazz, PK id);
 

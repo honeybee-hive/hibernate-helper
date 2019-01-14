@@ -7,8 +7,8 @@
 
 package com.github.hibernate.helper;
 
-import com.github.hibernate.helper.annotation.QueryConditionAnnotation;
-import com.github.hibernate.helper.annotation.QueryFieldAnnotation;
+import com.github.hibernate.helper.annotation.SelectWhere;
+import com.github.hibernate.helper.annotation.SelectColumn;
 import com.github.hibernate.helper.condition.QueryCondition;
 import com.github.hibernate.helper.condition.SQLOrder;
 import com.github.hibernate.helper.condition.SymbolConstants;
@@ -75,7 +75,7 @@ public class SQLHelper {
             Field[] fields = queryClass.getDeclaredFields();
             Field.setAccessible(fields, true);
             for (Field field : fields) {
-                QueryFieldAnnotation queryFieldAnnotation = field.getAnnotation(QueryFieldAnnotation.class);
+                SelectColumn queryFieldAnnotation = field.getAnnotation(SelectColumn.class);
                 String alias = field.getName();
                 if (alias.equals("serialVersionUID")) {
                     continue;
@@ -142,7 +142,7 @@ public class SQLHelper {
 
         for (Field field : fields) {
             // 获取查询条件实体类字段QueryConditionAnnotation注解
-            QueryConditionAnnotation queryConditionAnnotation = field.getAnnotation(QueryConditionAnnotation.class);
+            SelectWhere queryConditionAnnotation = field.getAnnotation(SelectWhere.class);
             if (queryConditionAnnotation == null) {
                 continue;
             }

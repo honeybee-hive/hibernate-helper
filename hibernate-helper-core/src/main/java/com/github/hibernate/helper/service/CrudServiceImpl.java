@@ -7,7 +7,7 @@
 package com.github.hibernate.helper.service;
 
 import com.github.hibernate.helper.HibernateHelper;
-import com.github.hibernate.helper.condition.SQLCondition;
+import com.github.hibernate.helper.condition.SQLWhere;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
@@ -48,7 +48,7 @@ public class CrudServiceImpl<T, PK extends Serializable> implements CrudService<
     }
 
     @Transactional
-    public void updatePatch(T t, List<SQLCondition> conditionParams) {
+    public void updatePatch(T t, List<SQLWhere> conditionParams) {
         helper.updatePatch(t, conditionParams);
     }
 
@@ -63,7 +63,7 @@ public class CrudServiceImpl<T, PK extends Serializable> implements CrudService<
     }
 
     @Transactional
-    public void delete(T t, List<SQLCondition> conditionParams) {
+    public void delete(T t, List<SQLWhere> conditionParams) {
         helper.delete(t);
     }
 

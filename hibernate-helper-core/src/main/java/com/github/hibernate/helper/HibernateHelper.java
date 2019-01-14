@@ -2,7 +2,7 @@ package com.github.hibernate.helper;
 
 import com.github.hibernate.helper.annotation.AnnotationUtil;
 import com.github.hibernate.helper.condition.QueryCondition;
-import com.github.hibernate.helper.condition.SQLCondition;
+import com.github.hibernate.helper.condition.SQLWhere;
 import com.google.common.collect.ImmutableList;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
@@ -16,7 +16,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 
-import javax.annotation.PostConstruct;
 import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.Iterator;
@@ -74,8 +73,8 @@ public class HibernateHelper {
      * @return int 返回更新数量
      */
     public int updatePatch(Object entity) {
-        SQLCondition sqlCondition = AnnotationUtil.getTableId(entity);
-        List<SQLCondition> conditionParams = ImmutableList.of(sqlCondition);
+        SQLWhere sqlCondition = AnnotationUtil.getTableId(entity);
+        List<SQLWhere> conditionParams = ImmutableList.of(sqlCondition);
         return this.updatePatch(entity, conditionParams);
     }
 
@@ -87,7 +86,7 @@ public class HibernateHelper {
      * @param conditionParams 自定义更新条件
      * @return int 返回更新数量
      */
-    public int updatePatch(Object entity, List<SQLCondition> conditionParams) {
+    public int updatePatch(Object entity, List<SQLWhere> conditionParams) {
         if (entity == null) {
             throw new NullPointerException("update object not null");
         }
@@ -120,7 +119,7 @@ public class HibernateHelper {
         }
         // 拼接条件语句
         for (int i = 0; i < conditionParams.size(); i++) {
-            SQLCondition conditionParam = conditionParams.get(i);
+            SQLWhere conditionParam = conditionParams.get(i);
             // 条件参数名
             String conditionName = conditionParam.getName();
             String symbol = conditionParam.getSymbol();

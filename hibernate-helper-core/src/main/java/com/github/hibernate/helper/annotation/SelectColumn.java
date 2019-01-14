@@ -24,7 +24,7 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 // 运行时
 @Retention(RetentionPolicy.RUNTIME)
-public @interface QueryFieldAnnotation {
+public @interface SelectColumn {
 
     /**
      * 查询的字段名

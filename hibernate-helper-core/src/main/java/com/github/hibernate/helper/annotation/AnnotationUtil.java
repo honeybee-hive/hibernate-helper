@@ -4,7 +4,7 @@
 package com.github.hibernate.helper.annotation;
 
 import com.github.hibernate.helper.SQLHelper;
-import com.github.hibernate.helper.condition.SQLCondition;
+import com.github.hibernate.helper.condition.SQLWhere;
 import com.github.hibernate.helper.condition.SQLSymbol;
 import org.apache.commons.lang.StringUtils;
 
@@ -89,7 +89,7 @@ public class AnnotationUtil {
      * @param object
      * @return
      */
-    public static SQLCondition getTableId(Object object) {
+    public static SQLWhere getTableId(Object object) {
         for (Method method : object.getClass().getDeclaredMethods()) {
             Id idAnnotation = method.getAnnotation(Id.class);
             if (idAnnotation != null) {
@@ -97,7 +97,7 @@ public class AnnotationUtil {
                 Column columnAnnotation = method.getAnnotation(Column.class);
                 String columnName = columnAnnotation.name();
                 try {
-                    return SQLCondition.builder(columnName, SQLSymbol.EQ.toString(), method.invoke(object));
+                    return SQLWhere.builder(columnName, SQLSymbol.EQ.toString(), method.invoke(object));
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }

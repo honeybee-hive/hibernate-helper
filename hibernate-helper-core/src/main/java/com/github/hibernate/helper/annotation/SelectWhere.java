@@ -24,7 +24,7 @@ import java.lang.annotation.Target;
  */
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface QueryConditionAnnotation {
+public @interface SelectWhere {
 
     /**
      * 别名

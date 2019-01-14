@@ -3,7 +3,7 @@
  */
 package com.github.hibernate.helper.example.dto;
 
-import com.github.hibernate.helper.annotation.QueryFieldAnnotation;
+import com.github.hibernate.helper.annotation.SelectColumn;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -27,15 +27,15 @@ public class GradeTeacherDTO implements Serializable {
     private String gradeType;
     private String gradeRemark;
 
-    @QueryFieldAnnotation(aliasName = "teacher")
+    @SelectColumn(aliasName = "teacher")
     private String teacherId;
-    @QueryFieldAnnotation(aliasName = "teacher")
+    @SelectColumn(aliasName = "teacher")
     private String teacherCode;
-    @QueryFieldAnnotation(aliasName = "teacher")
+    @SelectColumn(aliasName = "teacher")
     private String teacherName;
-    @QueryFieldAnnotation(aliasName = "teacher")
+    @SelectColumn(aliasName = "teacher")
     private Date teacherBirthday;
-    @QueryFieldAnnotation(aliasName = "teacher")
+    @SelectColumn(aliasName = "teacher")
     private String teacherPhone;
 
 }
